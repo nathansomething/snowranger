@@ -8,7 +8,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #17A2BD !important;
+    /*background-color: #17A2BD !important;*/
     }
     #map {
     height: 100%;
@@ -153,10 +153,12 @@
     }
     #weather .currently {
     margin: 0 20px;
-
+    } 
     .text.text-brand {
       color: #17A2BD !important;
     }
+    .padding {
+      padding: 10px;
     }
     </style>
     <meta charset="utf-8">
@@ -203,7 +205,7 @@
               {% load staticfiles %}
               <span>
               <img src="{% static "img/snowranger-small.png" %}" style="max-width:30px; margin-top: -7px; text-align: center;"/>
-                <span class="text text-brand" style="color: #17A2BD;">Snow Ranger </span> <span style="color: gray;"> Enabling mobility in Boston and beyond.</span>
+                <span class="text text-brand" >Snow Ranger </span> <span style="color: gray;"> Enabling mobility in Boston and beyond.</span>
               </span>
             </a>
             <div class="navbar-brand">
@@ -215,21 +217,47 @@
         </nav>
 
         <!-- .CONTAINER -->
-        <div class="container">
-          <p>Snowbility</p>
-        </div>
-        <div class="container">
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">I'm Coming From </span>
-            <input type="text" class="form-control" placeholder="Starting Point" aria-describedby="basic-addon1">
+        <div class="container-fluid">
+          
+          <div class="row">
+          <!-- "SIDEBAR" -->
+          <div class="col-sm-4">
+            
+            <!-- inputs -->
+            <label for="startingPoint" class="sr-only">I'm coming from</label>
+            <div class="input-group padding">
+              <span class="input-group-addon text-success" id="basic-addon1">Start</span>
+              <input id="startingPoint" type="text" class="form-control" placeholder="Starting Point" aria-describedby="basic-addon1">
+            </div>
+
+            <label for="endingPoint" class="sr-only">I'm going to</label>
+            <div class="input-group padding">
+              <span class="input-group-addon text-danger" id="basic-addon2">Finish</span>
+              <input id="endingPoint" type="text" class="form-control" placeholder="Destination" aria-describedby="basic-addon1">
+            </div>
+
+            <div id="legend" class="text-right padding">
+              <!-- LEGEND -->
+              <p>
+                <span class="text-muted">
+                  snow mobility alert
+                </span>
+                <img src="{% static "img/snowflake-icon.png" %}" alt="" style="text-align: center;"> 
+              </p>
+            </div>
+
+          </div> <!-- end col-sm-4 -->
+
+        
+          <div class="col-sm-8">
+
+            <!-- MAP -->
+            <div id="map">The map ought to go here</div>
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">  
+
           </div>
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon2">I'm Going To</span>
-            <input type="text" class="form-control" placeholder="Destination" aria-describedby="basic-addon1">
+
           </div>
-          <div id="map">The map ought to go here</div>
-          <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-          <br>
         </div>
 
 
