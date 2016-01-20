@@ -208,7 +208,7 @@
                 <span class="text text-brand" >Snow Ranger </span> 
               </span>
             </a>
-            <span class="navbar-text pull-right" style="color: gray;"> Enabling mobility in Boston and beyond.</span>
+            <p class="navbar-text pull-right hidden-xs" style="color: gray; margin-right: 10px;"> Enabling mobility in Boston and beyond.</p>
             <div id="weather"></div>
           <!-- </div> -->
           <!-- </div> -->
@@ -234,13 +234,26 @@
               <input id="endingPoint" type="text" class="form-control" placeholder="Destination" aria-describedby="basic-addon1">
             </div>
 
-            <div id="legend" class="text-right padding">
+            <!-- legend aligned right for small+ screens -->
+            <div id="legend" class="text-right padding hidden-xs">
               <!-- LEGEND -->
               <p>
                 <span class="text-muted">
                   snow mobility alert
                 </span>
                 <img src="{% static "img/snowflake-icon.png" %}" alt="" style="text-align: center;"> 
+              </p>
+            </div>
+            
+            <!-- legend aligned left for xsmall screens -->
+            <div id="legend" class="padding hidden-sm hidden-md hidden-lg">
+              <!-- LEGEND -->
+              <p>
+                <img src="{% static "img/snowflake-icon.png" %}" alt="" style="text-align: center;"> 
+                <span class="text-muted">
+                  snow mobility alert
+                </span>
+                
               </p>
             </div>
 
