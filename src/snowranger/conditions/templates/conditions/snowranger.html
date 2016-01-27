@@ -247,7 +247,7 @@
 
               <p>
                 <span class="text-muted">
-                  311 notice
+                  request for snow plowing
                 </span>
                 <img src="{% static "img/boston311.png" %}" alt="" style="text-align: center;"> 
               </p>
@@ -266,7 +266,7 @@
               <p>
                 <img src="{% static "img/boston311.png" %}" alt="" style="text-align: center;"> 
                 <span class="text-muted">
-                  311 notice
+                  request for snow plowing
                 </span>
               </p>
 
@@ -375,7 +375,7 @@
                     'X-App-Token': 'k7chiGNz0GPFKd4dS03IEfKuE'
                 },
                 data: {
-                    '$query': "SELECT * WHERE open_dt > '2016-01-01T00:00:00' AND case_status = 'Open' AND STARTS_WITH(type, 'Request for Snow Plowing')"
+                    '$query': "SELECT * WHERE open_dt > '2016-01-01T00:00:00' AND case_status = 'Open' AND STARTS_WITH(type, 'Request for Snow Plowing')" // Rodent Activity // Request for Snow Plowing // Bed Bugs // Abandoned Building // Overcrowding
                 },
                 success: function(data) {
                     for (var i = 0; i < data.length; i++) {
@@ -465,7 +465,9 @@
                     });
                     // where I have added .html to the marker object.
                     infowindow = new google.maps.InfoWindow({
-                        content: "<div ><img class='img-responsive'  src=\'" + markerInfos[index].image + "\'><br><p>" + markerInfos[index].description + "</p></div>"
+                        content: "<div ><img  src=\'" + markerInfos[index].image + "\' style='max-width: 200px; max-height: 200px;'/><br><p>" + markerInfos[index].description + "</p></div>",
+                        maxWidth: 200,
+                        maxHeight: 200
                     });
                     google.maps.event.addListener(marker, 'click', (function(marker, infowindow) {
                         return function() {
