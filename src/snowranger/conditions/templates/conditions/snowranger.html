@@ -375,7 +375,7 @@
                     'X-App-Token': 'k7chiGNz0GPFKd4dS03IEfKuE'
                 },
                 data: {
-                     '$query': "SELECT * WHERE open_dt > '2016-01-01T00:00:00' AND case_status ='Open' AND STARTS_WITH(type, 'Request for Snow Plowing')"
+                    '$query': "SELECT * WHERE open_dt > '2016-01-01T00:00:00' AND case_status = 'Open' AND STARTS_WITH(type, 'Request for Snow Plowing')"
                 },
                 success: function(data) {
                     for (var i = 0; i < data.length; i++) {
@@ -394,16 +394,19 @@
                     alert("Couldn't retrieve data from Boston SODA API");
                 }
             }).done(function() {
+
                 infowindow = new google.maps.InfoWindow({
                     content: "holding..."
                 });
+
                 for (index in boston311MarkerInfos) {
                     marker = new google.maps.Marker({
-                         position: new google.maps.LatLng(parseFloat(boston311MarkerInfos[index].location.latitude), parseFloat(boston311MarkerInfos[index].locationlongitude)),
+                        position: new google.maps.LatLng(parseFloat(boston311MarkerInfos[index].location.latitude), parseFloat(boston311MarkerInfos[index].location.longitude)),
                         map: map,
                         title: "Boston 311 Incident",
                         icon: "{% static 'img/boston311.png' %}"
                     });
+
                     infowindow = new google.maps.InfoWindow({
                         content: "<div>" +
                             "<p><b>" + boston311MarkerInfos[index].description + "</b></p><br>" +
@@ -411,11 +414,17 @@
                             "<p>" + "(Source: Boston 311)" + "</p>" +
                             "</div>"
                     });
+
                     google.maps.event.addListener(marker, 'click', (function(marker, infowindow) {
                         return function() {
                             infowindow.open(map, this);
                         };
                     })(marker, infowindow));
+
+                    // FIXME? Click anywhere on map to close open infowindow.
+                    // google.maps.event.addListener(map, 'click', function() {
+                    //     infowindow.close();
+                    // });
                 }
             });
         };
@@ -447,16 +456,16 @@
                     console.log("Image Url : " + markerInfos[index].image);
                     //bounds.extend(position);
                     marker = new google.maps.Marker({
-                         position: new google.maps.LatLng(parseFloat(markerInfos[index].locationlatitude), parseFloat(markerInfos[index].location.longitude)),
+                        position: new google.maps.LatLng(parseFloat(markerInfos[index].location.latitude), parseFloat(markerInfos[index].location.longitude)),
                         map: map,
                         title: "Title " + index,
-                         icon: "{% static 'img/snowflake-icon.png' %}" // THIS IS WHERE WE REPLACETHE MAP MARKER(?)
-                         // icon: "{% static 'img/snowranger-small.png' %}" // THIS IS WHERE WEREPLACE THE MAP MARKER(?)
+                        icon: "{% static 'img/snowflake-icon.png' %}" // THIS IS WHERE WE REPLACE THE MAP MARKER(?)
+                        // icon: "{% static 'img/snowranger-small.png' %}" // THIS IS WHERE WE REPLACE THE MAP MARKER(?)
                         //"{% static "img/snowrangermarker.png" %}"
                     });
                     // where I have added .html to the marker object.
                     infowindow = new google.maps.InfoWindow({
-                         content: "<div ><img class='img-responsive'  src=\'" + markerInfos[index]image + "\'><br><p>" + markerInfos[index].description + "</p></div>"
+                        content: "<div ><img class='img-responsive'  src=\'" + markerInfos[index].image + "\'><br><p>" + markerInfos[index].description + "</p></div>"
                     });
                     google.maps.event.addListener(marker, 'click', (function(marker, infowindow) {
                         return function() {
@@ -466,7 +475,7 @@
                 }
             });
         };
-         // Docs at http://simpleweatherjs.com
+        // Docs at http://simpleweatherjs.com
         var setWeather = function() {
             html = "";
             $.simpleWeather({
@@ -474,7 +483,7 @@
                 woeid: '',
                 unit: 'f',
                 success: function(weather) {
-                     html += '<h2>' + weather.city + ', ' + weather.region + " - " + weather.temp + '&deg;' + weather.units.temp + '<i class="icon-' + weather.code + '"></i><h2>';
+                    html += '<h2>' + weather.city + ', ' + weather.region + " - " + weather.temp + '&deg;' + weather.units.temp + '<i class="icon-' + weather.code + '"></i></h2>';
                     $("#weather").html(html);
                 },
                 error: function(error) {
